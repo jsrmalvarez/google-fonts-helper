@@ -99,8 +99,7 @@ export class Downloader extends Hookable<DownloaderHooks> {
 
     this.config = {
       base64: false,
-      overwriting: false,
-      outputDir: './',
+      overwriting: false,            
       stylePath: 'fonts.css',
       fontsDir: 'fonts',
       fontsPath: './fonts',
@@ -120,6 +119,10 @@ export class Downloader extends Hookable<DownloaderHooks> {
 
     const { outputDir, stylePath, overwriting, headers, fontsPath } = this.config
     const cssPath = resolve(outputDir, stylePath)
+
+    const onlyToStdOut = outputDir === undefined;
+    console.log(onlyToStdOut);
+    return;
 
     if (!overwriting && fsExtra.pathExistsSync(cssPath)) {
       return
